@@ -19,6 +19,12 @@ int main() {
         }
     }
 
+    if(maps[0][0] == maps[r-1][c-1]){
+        // 불가능
+        cout << "0"<<endl;
+        return 0;
+    }
+
     // index가 0인곳들은 못감 (0,0)에서 시작해서 대각선 아래로만 가야함
     int counts = 0;
 
