@@ -27,7 +27,7 @@ int main() {
         int b = oneindex[i][1];
         int ones = 0;
         for(int j = 0; j<3; j++){
-            if(b+i >= n){
+            if(b+j >= n){
                 continue;
             }
             if(arrays[a][b+j] == 1){
