@@ -51,6 +51,10 @@ int main() {
         // gold가 하나도 없는경우
         cout << "0" << endl;
         return 0;
+    }else if(total_golds == 1){
+        // 1개만 있는경우
+        cout << "1"<<endl;
+        return 0;
     }
 
     vector<int> total_steps;
