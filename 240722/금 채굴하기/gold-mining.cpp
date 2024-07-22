@@ -47,6 +47,12 @@ int main() {
     // gold가 있는 좌표만 담고있기!
     int total_golds = golds_index.size();
 
+    if(total_golds < 1){
+        // gold가 하나도 없는경우
+        cout << "0" << endl;
+        return 0;
+    }
+
     vector<int> total_steps;
     for(int i = 0; i<total_golds; i++){
         for(int j = i+1; j<total_golds; j++){
