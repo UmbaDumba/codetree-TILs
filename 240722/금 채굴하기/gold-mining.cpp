@@ -18,6 +18,30 @@ int nc2(int n){
     return (n * (n-1)) / 2;
 }
 
+void dfs(vector<vector<int>> *result, vector<int> combi, int now,int m, int n){
+    if(now > m){
+        return;
+    }
+    if(combi.size() == n){
+        (*result).push_back(combi);
+        return;
+    }
+
+    
+
+    dfs(result, combi, now+1, m, n);
+    combi.push_back(now);
+    dfs(result, combi, now+1, m, n);
+}
+
+vector<vector<int>> sub_index(int m, int n){
+    // m개 중 n개를 골라 만든 모든 조합
+    vector<vector<int>> result;
+    dfs(&result, {}, 0, m, n);
+    return result;
+
+}
+
 void print_vec(vector<int> vec){
     for(int i = 0; i<vec.size(); i++){
         cout << vec[i]<<" ";
@@ -44,6 +68,9 @@ int main() {
             }
         }
     }
+
+    
+
     // gold가 있는 좌표만 담고있기!
     int total_golds = golds_index.size();
 
@@ -57,22 +84,25 @@ int main() {
         return 0;
     }
 
-    vector<int> total_steps;
-    for(int i = 0; i<total_golds; i++){
-        for(int j = i+1; j<total_golds; j++){
-            total_steps.push_back(steps(golds_index[i], golds_index[j]));
-        }
-    }
-
-    sort(total_steps.begin(), total_steps.end());
-
-
     for(int i = total_golds; i>0; i--){
-        int coms = nc2(i);
-        int k = (total_steps[coms-1] + 1) / 2;
-        if(i * m > mine_cost(k)){
-            cout << i << endl;
-            return 0;
+        vector<vector<int>> coms = sub_index(total_golds, i);
+        for(int j = 0; j<coms.size(); j++){
+            int max_step = 0;
+            vector<int> now_com = coms[j];
+            vector<int> now_steps;
+            for(int k = 0; k<i; k++){
+                for(int l = k+1; l<i; l++){
+                    int stepss = steps(golds_index[now_com[k]], golds_index[now_com[l]]);
+                    if(max_step < stepss){
+                        max_step = stepss;
+                    }
+                }
+            }
+            int k = (max_step + 1)/2;
+            if(i * m > mine_cost(k)){
+                cout << i << endl;
+                return 0;
+            }
         }
     }
 
