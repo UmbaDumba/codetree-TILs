@@ -26,9 +26,6 @@ void dfs(vector<vector<int>> *result, vector<int> combi, int now,int m, int n){
         (*result).push_back(combi);
         return;
     }
-
-    
-
     dfs(result, combi, now+1, m, n);
     combi.push_back(now);
     dfs(result, combi, now+1, m, n);
@@ -37,6 +34,14 @@ void dfs(vector<vector<int>> *result, vector<int> combi, int now,int m, int n){
 vector<vector<int>> sub_index(int m, int n){
     // m개 중 n개를 골라 만든 모든 조합
     vector<vector<int>> result;
+    if(m == n){
+        vector<int> lst;
+        for(int i = 0; i<m; i++){
+            lst.push_back(i);
+        }
+        result.push_back(lst);
+        return result;
+    }
     dfs(&result, {}, 0, m, n);
     return result;
 
