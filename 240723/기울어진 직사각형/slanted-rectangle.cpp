@@ -49,9 +49,10 @@ int round_map(vector<vector<int>> maps, vector<int> start){
 
     int result = 0;
 
-    int temp = min(max_leftup, max_rightup);
-    for(int i = 0; i<temp; i++){
-        result = max(result, round_map_fix(maps, start, max_leftup-i, max_rightup-i));
+    for(int i = 0; i<max_leftup; i++){
+        for(int j = 0; j<max_rightup; j++){
+            result = max(result, round_map_fix(maps, start, max_leftup-i, max_rightup-j));
+        }
     }
 
     return result;
