@@ -10,7 +10,13 @@ int round_map(vector<vector<int>> maps, vector<int> start){
     // 왼쪽이든 오른쪽이든 많이가는게 이득일것같음
     int n = maps.size();
     int max_leftup = min(a, b);
+    if(a - max_leftup == 0){
+        max_leftup--;
+    }
     int max_rightup = min(a, n-1-b);
+    if(a - max_rightup == 0){
+        max_rightup--;
+    }
 
     vector<vector<int>> steps = {
         {-1, 1, max_rightup},
@@ -25,6 +31,9 @@ int round_map(vector<vector<int>> maps, vector<int> start){
         for(int j = 0; j<steps[i][2]; j++){
             a+=steps[i][0];
             b+=steps[i][1];
+            if(a < 0 || a >= n || b < 0 || b >= n){
+                return 0;
+            }
             result+=maps[a][b];
         }
     }
@@ -47,8 +56,10 @@ int main() {
 
     int maxresult = 0;
 
-    for(int i = 1; i<n-1; i++){
-        maxresult = max(maxresult, round_map(checkers, {n-1, i}));
+    for(int i = n-1; i>1; i--){
+        for(int j = 1; j<n-1; j++){
+            maxresult = max(maxresult, round_map(checkers, {i, j}));
+        }
     }
 
     cout << maxresult << endl;
