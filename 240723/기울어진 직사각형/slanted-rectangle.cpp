@@ -3,6 +3,33 @@
 #include <algorithm>
 using namespace std;
 
+int round_map_fix(vector<vector<int>> maps, vector<int> start, int max_leftup, int max_rightup){
+    int a = start[0];
+    int b = start[1];
+    int n = maps.size();
+    vector<vector<int>> steps = {
+        {-1, 1, max_rightup},
+        {-1, -1, max_leftup},
+        {1, -1, max_rightup},
+        {1, 1, max_leftup}
+    };
+    
+    int result = 0;
+
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<steps[i][2]; j++){
+            a+=steps[i][0];
+            b+=steps[i][1];
+            if(a < 0 || a >= n || b < 0 || b >= n){
+                return 0;
+            }
+            result+=maps[a][b];
+        }
+    }
+
+    return result;
+}
+
 int round_map(vector<vector<int>> maps, vector<int> start){
     int a = start[0];
     int b = start[1];
@@ -18,24 +45,13 @@ int round_map(vector<vector<int>> maps, vector<int> start){
         max_rightup--;
     }
 
-    vector<vector<int>> steps = {
-        {-1, 1, max_rightup},
-        {-1, -1, max_leftup},
-        {1, -1, max_rightup},
-        {1, 1, max_leftup}
-    };
+    
 
     int result = 0;
 
-    for(int i = 0; i<4; i++){
-        for(int j = 0; j<steps[i][2]; j++){
-            a+=steps[i][0];
-            b+=steps[i][1];
-            if(a < 0 || a >= n || b < 0 || b >= n){
-                return 0;
-            }
-            result+=maps[a][b];
-        }
+    int temp = min(max_leftup, max_rightup);
+    for(int i = 0; i<temp; i++){
+        result = max(result, round_map_fix(maps, start, max_leftup-i, max_rightup-i));
     }
 
     return result;
