@@ -36,18 +36,30 @@ int main() {
             for(int k = 0; k<m; k++){
                 int newindex1 = k - new_b[j][k];
                 if(newindex1 >= m){
-                    newindex1 -= m;
+                    while(newindex1 >= m){
+                        newindex1 -= m;
+                    }
                 }else if(newindex1 < 0){
-                    newindex1 += m;
+                    while(newindex1 < 0){
+                        newindex1 += m;
+                    }
+                    
                 }
                 int newindex2 = k - new_b[j+1][k];
                 if(newindex2 >= m){
-                    newindex2 -= m;
+                    while(newindex2 >= m){
+                        newindex2 -= m;
+                    }
                 }else if(newindex2 < 0){
-                    newindex2 += m;
+                    while(newindex2 < 0){
+                        newindex2 += m;
+                    }
                 }
+                
                 if(buildings[j][newindex1] == buildings[j+1][newindex2]){
-                    //cout << "test"<<endl;
+                    //cout << "test up"<<endl;
+                    //cout << j << " " << newindex1 << ", "<<j+1<<" "<<newindex2<<endl;
+                    //cout << buildings[j][newindex1] <<" "<<  buildings[j+1][newindex2]<<endl;
                     is_ex = true;
                     break;
                 }
@@ -55,6 +67,7 @@ int main() {
             if(!is_ex){
                 break;
             }
+            //cout << "up!!"<<endl;
             dn_up *= -1;
             for(int k = 0; k<m; k++){
                 new_b[j][k] += dn_up;
@@ -68,15 +81,27 @@ int main() {
             for(int k = 0; k<m; k++){
                 int newindex1 = k - new_b[j][k];
                 if(newindex1 >= m){
-                    newindex1 -= m;
+                    while(newindex1 >= m){
+                        newindex1 -= m;
+                    }
+                    
                 }else if(newindex1 < 0){
-                    newindex1 += m;
+                    while(newindex1 < 0){
+                        newindex1 += m;
+                    }
+                    
                 }
                 int newindex2 = k - new_b[j-1][k];
                 if(newindex2 >= m){
-                    newindex2 -= m;
+                    while(newindex2 >= m){
+                        newindex2 -= m;
+                    }
+                    
                 }else if(newindex2 < 0){
-                    newindex2 += m;
+                    while(newindex2 < 0){
+                        newindex2 += m;
+                    }
+                    
                 }
                 if(buildings[j][newindex1] == buildings[j-1][newindex2]){
                     is_ex = true;
@@ -86,11 +111,15 @@ int main() {
             if(!is_ex){
                 break;
             }
+            //cout << "down!!"<<endl;
             dn_down *= -1;
             for(int k = 0; k<m; k++){
                 new_b[j][k] += dn_down;
             }
         }
+//------------------------------------------
+        
+        
     }
 
     for(int i = 0; i<n; i++){
@@ -98,9 +127,13 @@ int main() {
             //cout << new_b[i][j] << " ";
             int newj = j - new_b[i][j];
             if(newj < 0){
-                newj+=m;
+                while(newj < 0){
+                    newj+=m;
+                }
             }else if(newj >= m){
-                newj-=m;
+                while(newj >= m){
+                    newj-=m;
+                }
             }
             cout << buildings[i][newj]<<" ";
         }
