@@ -7,9 +7,10 @@ int main() {
     // n초뒤에는 초기상태와 같아짐
     int n, t;
     cin >> n >> t;
-    int turns = t % n;
-
     int m = n*2;
+    int turns = t % m;
+
+    
 
     vector<int> conv;
     
