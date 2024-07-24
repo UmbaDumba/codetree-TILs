@@ -45,7 +45,7 @@ int main() {
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
             int downmin = INT_MAX;
-            for(int k = 0; k<m; k++){
+            for(int k = j; k<m; k++){
                 downmin = min(downmin, down_maps[i][k]);
                 maxsize = max(maxsize, (k-i+1) * (downmin));
             }
