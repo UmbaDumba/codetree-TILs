@@ -2,28 +2,30 @@
 #include <vector>
 using namespace std;
 
-bool dfs(vector<vector<int>> maps, int x, int y){
-    
+bool dfs(vector<vector<int>> maps, int x, int y, int n, int m){
+    if((x == (n-1)) && (y == (m-1))){
+        // 끝에 도달
+        return true;
+    }
+
+    //maps[x][y] = 0;
     vector<int> dx = {1, 0};
     vector<int> dy = {0, 1};
+
     for(int i = 0; i<2; i++){
+        
         int newx = x + dx[i];
         int newy = y + dy[i];
-        if(newx >= maps.size() || newy >= maps[0].size()){
+        if((newx >= n) || (newy >= m)){
             continue;
         }
-        if((newx == (maps.size()-1)) && (newy == (maps[0].size()-1))){
-            // 끝에 도달
-            return true;
-        }
         if(maps[newx][newy] == 1){
-            maps[newx][newy] = -1; // 이미 지나간곳
-            if(dfs(maps, newx, newy)){
-                return true;
-            }
+            maps[newx][newy] = 0;
+            return dfs(maps, newx, newy, n, m);
         }
     }
     return false;
+
 }
 
 int main() {
@@ -45,8 +47,8 @@ int main() {
         return 0;
     }
 
-    
-    cout << dfs(maps, 0, 0) << endl;
+    maps[0][0] = -1;
+    cout << dfs(maps, 0, 0, n, m) << endl;
 
     return 0;
 }
