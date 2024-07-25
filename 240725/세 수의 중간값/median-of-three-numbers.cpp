@@ -8,7 +8,7 @@ int main() {
     if(b>a && b<c){
         cout << "1"<<endl;
     }else{
-        cout << "a"<<endl;
+        cout << "0"<<endl;
     }
     return 0;
 }
