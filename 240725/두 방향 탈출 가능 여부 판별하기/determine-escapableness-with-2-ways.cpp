@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-void dfs(vector<vector<int>> maps, int x, int y, bool *ends){
+bool dfs(vector<vector<int>> maps, int x, int y){
     
     vector<int> dx = {1, 0};
     vector<int> dy = {0, 1};
@@ -14,14 +14,16 @@ void dfs(vector<vector<int>> maps, int x, int y, bool *ends){
         }
         if((newx == (maps.size()-1)) && (newy == (maps[0].size()-1))){
             // 끝에 도달
-            (*ends) = true;
-            return;
+            return true;
         }
         if(maps[newx][newy] == 1){
             maps[newx][newy] = -1; // 이미 지나간곳
-            dfs(maps, newx, newy, ends);
+            if(dfs(maps, newx, newy)){
+                return true;
+            }
         }
     }
+    return false;
 }
 
 int main() {
@@ -35,9 +37,8 @@ int main() {
         }
     }
 
-    bool ends = false;
-    dfs(maps, 0, 0, &ends);
-    cout << ends << endl;
+    
+    cout << dfs(maps, 0, 0) << endl;
 
     return 0;
 }
