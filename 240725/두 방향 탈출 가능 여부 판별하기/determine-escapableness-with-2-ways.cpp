@@ -2,11 +2,15 @@
 #include <vector>
 using namespace std;
 
-bool dfs(vector<vector<int>> maps, int x, int y, int n, int m){
+bool dfs(vector<vector<int>> *maps, int x, int y, int n, int m){
     if((x == (n-1)) && (y == (m-1))){
         // 끝에 도달
         return true;
     }
+    if((x != (n-1)) && (y == (m-1))){
+        return false;
+    }
+    
 
     //maps[x][y] = 0;
     vector<int> dx = {1, 0};
@@ -19,9 +23,13 @@ bool dfs(vector<vector<int>> maps, int x, int y, int n, int m){
         if((newx >= n) || (newy >= m)){
             continue;
         }
-        if(maps[newx][newy] == 1){
-            maps[newx][newy] = 0;
-            return dfs(maps, newx, newy, n, m);
+        
+        if((*maps)[newx][newy] == 1){
+            (*maps)[newx][newy] = -1;
+            bool temp  = dfs(maps, newx, newy, n, m);
+            if(temp){
+                return true;
+            }
         }
     }
     return false;
@@ -48,7 +56,7 @@ int main() {
     }
 
     maps[0][0] = -1;
-    cout << dfs(maps, 0, 0, n, m) << endl;
+    cout << dfs(&maps, 0, 0, n, m) << endl;
 
     return 0;
 }
