@@ -16,7 +16,7 @@ bool dfs(vector<vector<int>> maps, int x, int y){
             // 끝에 도달
             return true;
         }
-        if(maps[newx][newy] == 0){
+        if(maps[newx][newy] == 1){
             maps[newx][newy] = -1; // 이미 지나간곳
             if(dfs(maps, newx, newy)){
                 return true;
@@ -41,7 +41,7 @@ int main() {
         }
     }
     if(all_1){
-        cout << "0"<<endl;
+        cout << "1"<<endl;
         return 0;
     }
 
