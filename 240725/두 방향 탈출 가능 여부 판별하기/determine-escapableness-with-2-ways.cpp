@@ -7,11 +7,7 @@ bool dfs(vector<vector<int>> *maps, int x, int y, int n, int m){
         // 끝에 도달
         return true;
     }
-    if((x != (n-1)) && (y == (m-1))){
-        return false;
-    }
     
-
     //maps[x][y] = 0;
     vector<int> dx = {1, 0};
     vector<int> dy = {0, 1};
@@ -25,7 +21,7 @@ bool dfs(vector<vector<int>> *maps, int x, int y, int n, int m){
         }
         
         if((*maps)[newx][newy] == 1){
-            (*maps)[newx][newy] = -1;
+            (*maps)[newx][newy] = 0;
             bool temp  = dfs(maps, newx, newy, n, m);
             if(temp){
                 return true;
