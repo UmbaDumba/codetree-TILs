@@ -2,12 +2,8 @@
 #include <vector>
 using namespace std;
 
-void dfs(vector<vector<int>> maps, int x, int y, int *ends){
-    if(x == maps.size() && y == maps[0].size()){
-        // 끝에 도달
-        (*ends)++;
-        return;
-    }
+void dfs(vector<vector<int>> maps, int x, int y, bool *ends){
+    
     vector<int> dx = {1, 0};
     vector<int> dy = {0, 1};
     for(int i = 0; i<2; i++){
@@ -15,6 +11,11 @@ void dfs(vector<vector<int>> maps, int x, int y, int *ends){
         int newy = y + dy[i];
         if(newx >= maps.size() || newy >= maps[0].size()){
             continue;
+        }
+        if((newx == (maps.size()-1)) && (newy == (maps[0].size()-1))){
+            // 끝에 도달
+            (*ends) = true;
+            return;
         }
         if(maps[newx][newy] == 1){
             maps[newx][newy] = -1; // 이미 지나간곳
@@ -34,9 +35,9 @@ int main() {
         }
     }
 
-    int ends = 0;
+    bool ends = false;
     dfs(maps, 0, 0, &ends);
-    cout << (bool)ends << endl;
+    cout << ends << endl;
 
     return 0;
 }
