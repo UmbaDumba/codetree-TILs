@@ -36,7 +36,7 @@ int main() {
 
     int ends = 0;
     dfs(maps, 0, 0, &ends);
-    cout << ends << endl;
+    cout << (bool)ends << endl;
 
     return 0;
 }
