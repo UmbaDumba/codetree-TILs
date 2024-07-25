@@ -30,11 +30,19 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n, m;
     cin >> n >> m;
+    bool all_1 = true;
     vector<vector<int>> maps(n, vector<int>(m,0));
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
             cin >> maps[i][j];
+            if(maps[i][j] == 0){
+                all_1 = false;
+            }
         }
+    }
+    if(all_1){
+        cout << "0"<<endl;
+        return 0;
     }
 
     
