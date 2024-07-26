@@ -24,13 +24,13 @@ vector<int> cds(int n){
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int gcdnum = gcd(2880, 1920);
-    vector<int> cdnums = cds(gcdnum);
+    //int gcdnum = gcd(2880, 1920);
+    //vector<int> cdnums = cds(gcdnum);
 
     int a, b;
     cin >> a >> b;
     for(int i = a; i<=b; i++){
-        if(find(cdnums.begin(), cdnums.end(), i) != cdnums.end()){
+        if((2880 % i == 0) && (1920 % i == 0)){
             cout << "1" << endl;
             return 0;
         }
