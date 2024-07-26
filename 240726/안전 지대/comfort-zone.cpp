@@ -68,7 +68,7 @@ int main() {
     int coms = -1;
     int comk;
     
-    for(int k = 1; k<maxheight; k++){
+    for(int k = 1; k<=maxheight; k++){
         int nowcon = get_coms(houses, k);
         if(nowcon > coms){
             // 같을때는 더 작은 k를 출력하므로 초과로 확인
