@@ -9,6 +9,7 @@ int main() {
         cin >> temp;
         if(temp % 3 != 0){
             cout << "0" << endl;
+            return 0;
         }
     }
     cout << "1"<<endl;
