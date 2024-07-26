@@ -71,17 +71,17 @@ int main() {
         }
     }
     
-    int maxpang = -1;
+    int pangs = 0;
     int maxsize = -1;
 
     for(int i = 0; i<numbers.size(); i++){
         vector<int> nowppyyo = ppuyo(maps, numbers[i]);
-        maxpang = max(maxpang, nowppyyo[0]);
+        pangs+=nowppyyo[0];
         maxsize = max(maxsize, nowppyyo[1]);
     }
 
     
-    cout << maxpang << " "<<maxsize<<endl;
+    cout << pangs << " "<<maxsize<<endl;
 
     
     return 0;
