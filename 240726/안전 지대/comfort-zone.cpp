@@ -65,7 +65,7 @@ int main() {
         }
     }
 
-    int coms = 0;
+    int coms = -1;
     int comk;
     
     for(int k = 1; k<maxheight; k++){
