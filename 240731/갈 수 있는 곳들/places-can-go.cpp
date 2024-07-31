@@ -21,6 +21,8 @@ int main() {
     for(int i = 0; i<k; i++){
         int x, y;
         cin >> x >> y;
+        x--;
+        y--;
         if(maps[x][y] != 0){
             continue;
         }
