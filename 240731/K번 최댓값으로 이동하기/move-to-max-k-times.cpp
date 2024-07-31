@@ -44,7 +44,7 @@ int main() {
         prev = next;
     }
 
-    cout << prev[0] << " "<<prev[1];
+    cout << prev[0] + 1 << " "<<prev[1] + 1;
 
     return 0;
 }
