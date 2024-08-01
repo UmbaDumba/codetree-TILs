@@ -17,6 +17,8 @@ void choose(vector<int> number){
         return;
     }
 
+    //cout << "choo"<<endl;
+
     //vector<int> nowvec = number;
     for(int i=1; i<=k; i++){
         vector<int> nowvec = number;
@@ -28,7 +30,7 @@ void choose(vector<int> number){
 int main() {
     // 여기에 코드를 작성해주세요.
     //int n, k;
-    cin >> n >> k;
+    cin >> k >> n;
 
     choose({});
 
