@@ -14,15 +14,16 @@ bool comp(vector<int> a, vector<int> b){
     return a[0] < b[0];
 }
 
-void choose(vector<int> liness){
-    if(liness.size() == n){
+void choose(vector<int> liness, int count){
+    if(count == n){
         line_choose.push_back(liness);
         return;
     }
-    for(int i = -1; i<n; i++){
+    choose(liness, count+1);
+    for(int i = 0; i<n; i++){
         vector<int> nowline = liness;
         nowline.push_back(i);
-        choose(nowline);
+        choose(nowline, count+1);
     }
 }
 
@@ -38,7 +39,7 @@ int main() {
 
     sort(lines.begin(), lines.end(), comp);
 
-    choose({});
+    choose({}, 0);
 
     int answer = 0;
 
@@ -46,9 +47,7 @@ int main() {
         int count = 0;
         for(int j = 0; j<line_choose[i].size(); j++){
             for(int k = j; k<line_choose[i].size(); k++){
-                if(line_choose[i][j] == -1 || line_choose[i][k] == -1){
-                    continue;
-                }
+                
                 if(lines[j][1] < lines[k][0]){
                     // 안겹침
                     count++;
