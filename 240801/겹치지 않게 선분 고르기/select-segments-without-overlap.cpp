@@ -38,24 +38,33 @@ int main() {
 
     choose({}, 0);
 
+
     int answer = 0;
 
     for(int i = 0; i<line_choose.size(); i++){
         int count = 0;
+        bool isok = true;
         if(line_choose[i].size() == 1){
             count = 1;
         }else{
             for(int j = 0; j<line_choose[i].size(); j++){
-                for(int k = j; k<line_choose[i].size(); k++){
-                    
-                    if(lines[j][1] < lines[k][0]){
-                        // 안겹침
-                        count++;
+                for(int k = j+1; k<line_choose[i].size(); k++){
+                    if(lines[line_choose[i][j]][1] >= lines[line_choose[i][k]][0]){
+                        //겹침
+                        //cout << lines[line_choose[i][j]][1] << " "<<lines[line_choose[i][k]][0]<<endl;
+                        isok = false;
+                        break;
                     }
+                }
+                if(!isok){
+                    break;
                 }
             }
         }
-        
+        if(isok){
+            count = line_choose[i].size();
+        }
+        //cout << "count : "<<count<<endl;
         answer = max(answer, count);
     }
 
