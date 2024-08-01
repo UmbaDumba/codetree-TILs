@@ -20,11 +20,8 @@ void choose(vector<int> liness, int count){
         return;
     }
     choose(liness, count+1);
-    for(int i = 0; i<n; i++){
-        vector<int> nowline = liness;
-        nowline.push_back(i);
-        choose(nowline, count+1);
-    }
+    liness.push_back(count);
+    choose(liness, count+1);
 }
 
 
@@ -45,15 +42,20 @@ int main() {
 
     for(int i = 0; i<line_choose.size(); i++){
         int count = 0;
-        for(int j = 0; j<line_choose[i].size(); j++){
-            for(int k = j; k<line_choose[i].size(); k++){
-                
-                if(lines[j][1] < lines[k][0]){
-                    // 안겹침
-                    count++;
+        if(line_choose[i].size() == 1){
+            count = 1;
+        }else{
+            for(int j = 0; j<line_choose[i].size(); j++){
+                for(int k = j; k<line_choose[i].size(); k++){
+                    
+                    if(lines[j][1] < lines[k][0]){
+                        // 안겹침
+                        count++;
+                    }
                 }
             }
         }
+        
         answer = max(answer, count);
     }
 
