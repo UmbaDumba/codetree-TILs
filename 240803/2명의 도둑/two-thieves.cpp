@@ -9,7 +9,7 @@ vector<vector<int>> mcn;
 
 bool is_in(int x1, int y1, int x2, int y2){
     // 도둑1,2의 제일 왼쪽칸이 주어졌을 때, 겹치는지 확인
-    return ((x1 == x2) && (((y1 + m >= y2) && (y1 <= y2)) || ((y2 + m >= y1) && (y1 >= y2))));
+    return ((x1 == x2) && (((y1 + m > y2) && (y1 <= y2)) || ((y2 + m > y1) && (y1 >= y2))));
 }
 
 int values(int x, int y){
