@@ -78,6 +78,10 @@ int main() {
         }
     }
 
+    if(min_garos == m){
+        min_garos = 0;
+    }
+
     cout << min_garos;
 
 
