@@ -57,6 +57,12 @@ int main() {
         first_members[lines[i].first] = temp;
     }
 
+    if(vec_same(members, first_members)){
+        // 그대로면, 0개 선택하는게 최소
+        cout << "0";
+        return 0;
+    }
+
 
     vector<vector<int>> whatlines;
     choose(0, {}, &whatlines);
@@ -78,9 +84,6 @@ int main() {
         }
     }
 
-    if(min_garos == m){
-        min_garos = 0;
-    }
 
     cout << min_garos;
 
