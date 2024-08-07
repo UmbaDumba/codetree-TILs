@@ -29,7 +29,8 @@ int main() {
             count[numbers[j]]++;
             j++;
         }
-        result = max(result, j - i + 1);
+        result = max(result, j - i);
+        count[numbers[i]]--;
     }
     cout << result;
 
