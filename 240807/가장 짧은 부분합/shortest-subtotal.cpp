@@ -20,10 +20,15 @@ int main() {
     int answer = INT_MAX;
 
     int j = -1;
+    int sum = 0;
     for(int i = 0; i<n; i++){
-        int sum = 0;
+        //cout << "i : "<<i<<endl;
+        if(i > 0){
+            sum -= numbers[i-1];
+        }
         while(j<=n){
             if(sum >= s){
+                //cout << "sum, j : "<<sum<<", "<<j << endl;
                 break;
             }
             j++;
@@ -32,10 +37,10 @@ int main() {
         }
         // i   최대숫자 j 모양!!
         if(sum < s){
-            // 조건도달 못하고 그냥 j가 범위 넘겨서 튕긴것
             continue;
         }
-        answer = min(answer, j-i);
+        
+        answer = min(answer, j-i + 1);
     }
 
     if(answer == INT_MAX){
