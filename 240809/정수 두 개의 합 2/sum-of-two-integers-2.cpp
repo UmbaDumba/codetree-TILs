@@ -31,9 +31,7 @@ int main() {
             i--;
             continue;
         }else{
-            answer++;
-            j--;
-            i--;
+            answer+=(j-i);
             continue;
         }
     }
