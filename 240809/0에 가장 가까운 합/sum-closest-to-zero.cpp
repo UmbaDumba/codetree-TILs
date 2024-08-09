@@ -19,6 +19,9 @@ int main() {
     int j = n-1;
     int sum = abs(nums[0] + nums[j]);
     for(int i = 0; i < n; i++){
+        if(i == j){
+            break;
+        }
         int nowsum = nums[i] + nums[j];
         if(nowsum > 0){
             j--;
