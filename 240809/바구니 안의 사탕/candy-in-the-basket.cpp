@@ -28,24 +28,28 @@ int main() {
     int j;
     int x = candys[0].second; // 범위 초기값 제일왼쪽
     int y = x + limit; // 범위 초기값 제일 오른쪽
-    for(int j = 0; j<n; j++){
+    for(j = 0; j<n; j++){
+        
         if(candys[j].second > y){
             break;
         }
         sums+=candys[j].first;
     }
 
+    
+
     max_sums = sums;
     // sums의 초기값은, [x, y]범위의 합
     // i, j : 해당범위에 있는 바구니 위치
+    //cout << i << ", "<<j << endl;
     while(y <= candys[n-1].second){
         x++;
         y++;
-        if(candys[i].second < x){
+        while(candys[i].second < x){
             sums-=candys[i].first;
             i++;
         }
-        if((j < n) && candys[j].second <= y){
+        while((j < n) && candys[j].second <= y){
             sums += candys[j].first;
             j++;
         }
@@ -56,7 +60,7 @@ int main() {
     
     
 
-    cout << max_sums;
+    cout <<max_sums;
 
     return 0;
 }
