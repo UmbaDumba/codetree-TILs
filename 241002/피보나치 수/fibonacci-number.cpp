@@ -13,7 +13,8 @@ int fibo(int n){
         memo[n] = 1;
         return 1;
     }
-    return fibo(n-2) + fibo(n-1);
+    memo[n] = fibo(n-1) + fibo(n-2);
+    return memo[n];
 }
 
 int main() {
