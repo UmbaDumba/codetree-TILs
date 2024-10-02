@@ -27,11 +27,11 @@ int main() {
     
 
     for(int i = 4; i<=n; i++){
-        dp[i] = dp[i-2] + dp[i-3];
+        dp[i] = (dp[i-2] + dp[i-3]) % 10007;
         // 최종적으로 2칸뛰어서 도착 + 최종적으로 3칸뛰어서 도착
     }
 
-    cout << dp[n] % 10007;
+    cout << dp[n];
 
     
     return 0;
