@@ -8,7 +8,7 @@ int main() {
     cin >> n;
     vector<long long> dp(n+1, 0);
 
-    dp[0] = 0;
+    dp[0] = 1;
     dp[1] = 2;
     if(n >= 2){
         dp[2] = 7;
@@ -25,7 +25,10 @@ int main() {
     }
 
     for(int i = 4; i<=n; i++){
-        dp[i] = ((dp[i-1] * 2) + (dp[i-2] * 3) + (dp[i-3] * 3)) % 1000000007;
+        
+        dp[i] = ((dp[i-1] * 3) + dp[i-2] - dp[i-3]) % 1000000007;
+        
+        
     }
 
     cout << dp[n];
