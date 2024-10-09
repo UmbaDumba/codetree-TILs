@@ -43,12 +43,23 @@ int main() {
             // |최댓값-최솟값|을 최소로 만드는 방향선택해서 업데이트
             int temp1 = max1 - min1;
             int temp2 = max2 - min2;
-            if(temp1 <= temp2){
+            if(temp1 < temp2){
                 dp_max[i][j] = max1;
                 dp_min[i][j] = min1;
-            }else{
+            }else if(temp1 < temp2){
                 dp_max[i][j] = max2;
                 dp_min[i][j] = min2;
+            }else{
+                // 똑같을때,,,
+                // 다음까지 확인해봐야하나??
+                // 최대를 최소화하도록?
+                if(max1 < max2){
+                    dp_max[i][j] = max1;
+                    dp_min[i][j] = min1;
+                }else{
+                    dp_max[i][j] = max2;
+                    dp_min[i][j] = min2;
+                }
             }
         }
     }
