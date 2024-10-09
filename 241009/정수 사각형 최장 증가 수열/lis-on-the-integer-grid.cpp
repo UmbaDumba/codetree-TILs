@@ -10,6 +10,15 @@ vector<int> dx = {1, 0, -1, 0};
 vector<int> dy = {0, 1, 0, -1};
 
 void dfs(int x, int y, int dfslens, int* lens){
+
+    if(dp[x][y] != 0){
+        // 이미 최대길이가 구해진 시작점
+        // -> dp에 저장되어 있는값을 그대로 사용해준다
+        dfslens += (dp[x][y] - 1);
+        *(lens) = max(*(lens), dfslens);
+        return; // 반복필요없음
+    }
+
     *(lens) = max(*(lens), dfslens);
     for(int i = 0; i<4; i++){
         int newx = x + dx[i];
@@ -18,13 +27,6 @@ void dfs(int x, int y, int dfslens, int* lens){
             continue;
         }
         if(nums[x][y] < nums[newx][newy]){
-            if(dp[newx][newy] != 0){
-                // 최대 길이가 이미 구해진 부분
-                // 여기서부터는 또 탐색할필요가 없다!
-                dfslens += dp[newx][newy];
-                *(lens) = max(*(lens), dfslens);
-                return;
-            }
             dfs(newx, newy, dfslens+1, lens);
         }
     }
