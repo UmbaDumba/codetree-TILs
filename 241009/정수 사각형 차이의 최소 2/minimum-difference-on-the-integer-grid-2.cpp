@@ -56,9 +56,18 @@ int main() {
                 if(max1 < max2){
                     dp_max[i][j] = max1;
                     dp_min[i][j] = min1;
-                }else{
+                }else if(max1 > max2){
                     dp_max[i][j] = max2;
                     dp_min[i][j] = min2;
+                }else{
+                    // min??ㅋㅋㅋㅋㅋㅋㅋㅋ
+                    if(min1 < min2){
+                        dp_max[i][j] = max1;
+                        dp_min[i][j] = min1;
+                    }else{
+                        dp_max[i][j] = max2;
+                        dp_min[i][j] = min2;
+                    }
                 }
             }
         }
