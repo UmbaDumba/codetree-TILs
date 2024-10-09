@@ -43,7 +43,7 @@ int main() {
             // |최댓값-최솟값|을 최소로 만드는 방향선택해서 업데이트
             int temp1 = max1 - min1;
             int temp2 = max2 - min2;
-            if(temp1 < temp2){
+            if(temp1 <= temp2){
                 dp_max[i][j] = max1;
                 dp_min[i][j] = min1;
             }else{
@@ -52,6 +52,7 @@ int main() {
             }
         }
     }
+
 
     cout << dp_max[n-1][n-1] - dp_min[n-1][n-1];
 
