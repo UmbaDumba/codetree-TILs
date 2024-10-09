@@ -17,7 +17,7 @@ int dfs(int x, int y){
         return dp[x][y];
     }
 
-    int max_len = 1;
+    dp[x][y] = 1;
     for(int i = 0; i<4; i++){
         int newx = x + dx[i];
         int newy = y + dy[i];
@@ -25,10 +25,10 @@ int dfs(int x, int y){
             continue;
         }
         if(nums[x][y] < nums[newx][newy]){
-            max_len = max(dfs(newx, newy) + 1, max_len);
+            dp[x][y] = max(dfs(newx, newy)+1, dp[x][y]);
         }
     }
-    return max_len;
+    return dp[x][y];
 }
 
 
@@ -50,17 +50,13 @@ int main() {
     }
 
 
-
+    int result = 0;
     for(int i = 0; i<n; i++){
         for(int j = 0; j<n; j++){
-            dp[i][j] = dfs(i, j);
+            result = max(dfs(i, j), result);
         }
     }
 
-    int result = 0;
-    for(int i = 0; i<n; i++){
-        result = max(result, *max_element(dp[i].begin(), dp[i].end()));
-    }
 
     cout << result;
 
