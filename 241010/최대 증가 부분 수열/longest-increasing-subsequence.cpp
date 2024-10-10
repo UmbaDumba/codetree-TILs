@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -25,7 +26,7 @@ int main() {
         }
     }
 
-    cout << dp[n-1];
+    cout << *max_element(dp.begin(), dp.end());
 
     return 0;
 }
