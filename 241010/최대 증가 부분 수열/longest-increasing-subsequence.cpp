@@ -14,7 +14,7 @@ int main() {
         nums.push_back(temp);
     }
 
-    vector<int> dp(n, 0); // nums[i]를 꼭 마지막에 포함하는 수열 길이
+    vector<int> dp(n, 1); // nums[i]를 꼭 마지막에 포함하는 수열 길이
 
     dp[0] = 1; // 자기자신만 포함가능
     for(int i = 1; i<n; i++){
