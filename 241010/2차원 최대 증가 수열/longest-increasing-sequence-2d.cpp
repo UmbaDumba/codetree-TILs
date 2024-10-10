@@ -10,10 +10,11 @@ int main() {
     vector<vector<int>> nums(n, vector<int>(m, 0));
     vector<vector<int>> dp(n, vector<int>(m, 0)); // dp[i][j]가 마지막 발판일 때 최대
     for(int i = 0; i<n; i++){
-        for(int j = 0; j<n; j++){
+        for(int j = 0; j<m; j++){
             cin >> nums[i][j];
         }
     }
+
 
     dp[0][0] = 1;
 
@@ -44,6 +45,7 @@ int main() {
             }
         }
     }
+
 
     int ans = 0;
     for(int i = 0; i<n; i++){
