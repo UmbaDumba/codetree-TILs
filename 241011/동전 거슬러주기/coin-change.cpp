@@ -31,6 +31,9 @@ int main() {
             dp[i] = min(dp[i], dp[j] + dp[i-j]);
         }
     }
+    if(dp[m] == INT_MAX){
+        dp[m] = -1;
+    }
     cout << dp[m];
 
     return 0;
