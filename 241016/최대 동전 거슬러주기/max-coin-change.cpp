@@ -19,6 +19,9 @@ int main() {
     dp[0] = 0;
     for(int i = 1; i<=m; i++){
         for(int j = 0; j<=i; j++){
+            if(dp[j] == -1 || dp[i-j] == -1){
+                continue;
+            }
             dp[i] = max(dp[i], dp[j] + dp[i-j]);
         }
     }
