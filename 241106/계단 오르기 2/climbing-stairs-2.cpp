@@ -9,7 +9,7 @@ int main() {
     int n;
     cin >> n;
     vector<int> nums(n+1, 0);
-    vector<vector<long long>> dp(n+1, vector<long long>(4, 0));
+    vector<vector<long long>> dp(n+1, vector<long long>(4, -1));
     // 각 칸까지 올라오는데, 사용한 1칸점프의 개수를 인덱스로 (0, 1, 2, 3)
     // -1이면 그냥 없는것
 
@@ -26,7 +26,6 @@ int main() {
         dp[i][0] = -1; // 한칸을 안뛰고 지금으로 오는거 불가능
         for(int j = 0; j<3; j++){
             if(dp[i-1][j] == -1){
-                dp[i][j+1] = -1;
                 continue;
             }
             dp[i][j+1] = max(dp[i][j+1], dp[i-1][j] + nums[i]);
@@ -35,7 +34,6 @@ int main() {
         // 두칸
         for(int j = 0; j<4; j++){
             if(dp[i-2][j] == -1){
-                dp[i][j] = -1;
                 continue;
             }
             dp[i][j] = max(dp[i][j], dp[i-2][j] + nums[i]);
@@ -51,7 +49,7 @@ int main() {
     /*
     cout << endl;
     for(int i = 0; i<4; i++){
-        cout << dp[n][i] <<"  ";
+        cout << dp[3][i] <<"  ";
     }
     */
     
