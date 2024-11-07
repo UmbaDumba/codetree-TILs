@@ -11,7 +11,7 @@ int main() {
         cin >> nums[i];
     }
 
-    vector<vector<int>> dp(n, vector<int>(41, 0));
+    vector<vector<long long>> dp(n, vector<long long>(41, 0));
     // 무조건 20을 더해서 양수로 만들기 (index로 관리하기 때문)
     // 즉,, 실제 계산결과가 13이었다면, index로 관리할때는 23으로 관리
     // 이렇게 되면 실제 계산결과가 -20일 때 index 0으로 표현 가능해진다!
