@@ -11,6 +11,8 @@ int main() {
     vector<vector<vector<long long>>> dp(n+1, vector<vector<long long>>(3, vector<long long>(3, 0)));
     // [i][j][k] : i번째날, j개의 t, k개의 연속된 b 경우의수
 
+    long long for_mod = ((10*10*10*10*10*10*10*10*10) + 7);
+
 
     // 0번째날은 1로 고정
     dp[0][0][0] = 1;
@@ -21,6 +23,7 @@ int main() {
         for(int j = 0; j<3; j++){
             for(int k = 0; k<3; k++){
                 dp[i][j][0] += dp[i-1][j][k];
+                dp[i][j][0] %= for_mod;
             }
         }
 
@@ -29,6 +32,7 @@ int main() {
         for(int j = 0; j<3; j++){
             for(int k = 0; k<2; k++){
                 dp[i][j][k+1] += dp[i-1][j][k];
+                dp[i][j][k+1] %= for_mod;
             }
         }
 
@@ -38,6 +42,7 @@ int main() {
         for(int j = 0; j<2; j++){
             for(int k = 0; k<3; k++){
                 dp[i][j+1][0] += dp[i-1][j][k];
+                dp[i][j+1][0] %= for_mod;
             }
         }
     }
@@ -47,7 +52,7 @@ int main() {
     for(int i = 0; i<3; i++){
         for(int j = 0; j<3; j++){
             answer += dp[n][i][j];
-            answer %= ((10*10*10*10*10*10*10*10*10) + 7);
+            answer %= for_mod;
         }
     }
 
