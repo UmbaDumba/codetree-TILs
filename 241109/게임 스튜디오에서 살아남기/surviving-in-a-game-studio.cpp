@@ -8,7 +8,7 @@ int main() {
     int n;
     cin >> n;
 
-    vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(3, vector<int>(3, 0)));
+    vector<vector<vector<long long>>> dp(n+1, vector<vector<long long>>(3, vector<long long>(3, 0)));
     // [i][j][k] : i번째날, j개의 t, k개의 연속된 b 경우의수
 
 
@@ -42,11 +42,12 @@ int main() {
         }
     }
 
-    int answer = 0;
+    long long answer = 0;
 
     for(int i = 0; i<3; i++){
         for(int j = 0; j<3; j++){
             answer += dp[n][i][j];
+            answer %= ((10*10*10*10*10*10*10*10*10) + 7);
         }
     }
 
