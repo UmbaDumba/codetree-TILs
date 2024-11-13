@@ -12,9 +12,7 @@ int n = 4;
 int grid[MAX_N][MAX_N];
 int next_grid[MAX_N][MAX_N];
 
-// grid를 시계방향으로 90' 회전시킵니다.
 void Rotate() {
-    // next_grid를 0으로 초기화합니다.
     for(int i = 0; i < n; i++)
 		for(int j = 0; j < n; j++)
             next_grid[i][j] = 0;
@@ -75,13 +73,7 @@ void Drop() {
             grid[i][j] = next_grid[i][j];
 }
 
-// move_dir 방향으로 기울이는 것을 진행합니다.
-// 회전을 규칙적으로 하기 위해
-// 아래, 오른쪽, 위, 왼쪽 순으로 dx, dy 순서를 가져갑니다.
 void Tilt(int move_dir) {
-    // Step 1.
-    // move_dir 횟수만큼 시계방향으로 90'회전하는 것을 반복하여
-    // 항상 아래로만 숫자들을 떨어뜨리면 되게끔 합니다.
     for(int i = 0; i < move_dir; i++)
         Rotate();
 
