@@ -10,7 +10,7 @@ int dp_index = 0;
 void calculate_dp()
 {
     // dp 뒷부분 더 계산해야함
-    for(int i = dp_index; i<sans.size(); i++)
+    for(int i = dp_index+1; i<sans.size(); i++)
     {
         dp[i] = 0;
         for(int j = 0; j<i; j++)
