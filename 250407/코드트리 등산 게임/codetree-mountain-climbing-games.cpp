@@ -13,6 +13,7 @@ void calculate_dp(int san_max)
     // dp 뒷부분 더 계산해야함
     for(int i = dp_index; i<san_max; i++)
     {
+        dp[i] = 0;
         for(int j = 0; j<i; j++)
         {
             if(sans[j] < sans[i])
@@ -64,8 +65,7 @@ int main() {
         }else if(ques == 300)
         {
             sans.pop_back();
-            dp[dp_index] = 0;
-            dp_index--;
+            dp_index = dp_index < sans.size() - 1 ? dp_index : sans.size() - 1;
         }else if(ques == 400)
         {
             int m_index;
