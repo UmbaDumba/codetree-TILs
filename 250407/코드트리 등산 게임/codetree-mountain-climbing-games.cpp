@@ -57,7 +57,7 @@ int main() {
             int m_index;
             cin >> m_index;
             m_index--;
-            cout << plays(sans, m_index) << endl;
+            cout << plays(sans, m_index) << "\n";
         }
     }
 
