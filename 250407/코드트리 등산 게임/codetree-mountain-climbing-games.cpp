@@ -28,7 +28,7 @@ void update_dp(void)
         //dp[i] = *max_element(segment_tree.begin(), segment_tree.begin() + sans[i]) + 1;
         dp.push_back(get_max(0, sans[i] - 1) + 1);
         segment_tree[sans[i]] = dp[i];
-        //cout << "dp["<<i<<"] : "<<dp[i]<<endl;
+        //cout << "dp["<<i<<"] : "<<dp[i] << ", height : "<<sans[i] << endl;
     }
 }
 
@@ -37,7 +37,7 @@ long long plays(int m_index) {
 
     long long result = 0;
 
-    update_dp();
+    //update_dp();
 
     result = 1000000 * (dp[m_index] + 1 + *max_element(dp.begin(), dp.end())) + sans[max_element(dp.begin(), dp.end()) - dp.begin()];
 
@@ -73,9 +73,10 @@ int main() {
         }
         else if (ques == 300)
         {
+            segment_tree[sans[sans.size() - 1]]--;
             sans.pop_back();
             dp.pop_back();
-            segment_tree[sans[sans.size() - 1]]--;
+            
         }
         else if (ques == 400)
         {
