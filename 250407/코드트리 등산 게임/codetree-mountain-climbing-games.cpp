@@ -3,37 +3,24 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> sans;
-vector<long long> dp(50000, 0);
-int dp_index = 0;
-
-void calculate_dp(int san_max)
-{
-   
-    // dp 뒷부분 더 계산해야함
-    for(int i = dp_index; i<san_max; i++)
+long long plays(vector<int> sans, int m_index){
+    
+    long long result = 0;
+    vector<int> dp(sans.size(), 0);
+    int start = 0;
+    for(int i = 1; i<sans.size(); i++)
     {
-        dp[i] = 0;
         for(int j = 0; j<i; j++)
         {
             if(sans[j] < sans[i])
             {
-                dp[i] = (dp[i] < (dp[j] + 1000000)) ? dp[j] + 1000000 : dp[i];
+                dp[i] = (dp[i] < (dp[j] + 1)) ? dp[j] + 1 : dp[i];
             }
             
         }
     }
-    dp_index = san_max - 1;
-    
-}
 
-long long plays(int m_index){
-    
-    long long result = 0;
-
-    calculate_dp(sans.size());
-
-    result = dp[m_index] + 1000000 + *max_element(dp.begin(), dp.end()) + sans[max_element(dp.begin(), dp.end()) - dp.begin()];
+    result = 1000000 * (dp[m_index] + 1 + *max_element(dp.begin(), dp.end())) + sans[max_element(dp.begin(), dp.end()) - dp.begin()];
 
     return result;
 }
@@ -41,7 +28,7 @@ long long plays(int m_index){
 int main() {
     
     int q;
-    
+    vector<int> sans;
     cin >> q;
 
     for(int i = 0; i<q; i++)
@@ -65,13 +52,12 @@ int main() {
         }else if(ques == 300)
         {
             sans.pop_back();
-            dp_index = dp_index < sans.size() - 1 ? dp_index : sans.size() - 1;
         }else if(ques == 400)
         {
             int m_index;
             cin >> m_index;
             m_index--;
-            cout << plays(m_index) << "\n";
+            cout << plays(sans, m_index) << "\n";
         }
     }
 
