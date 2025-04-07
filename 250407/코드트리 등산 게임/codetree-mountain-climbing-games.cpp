@@ -4,26 +4,26 @@
 using namespace std;
 
 vector<int> sans;
-vector<long long> dp(50000);
+vector<long long> dp(50000, 0);
 int dp_index = 0;
 
 void calculate_dp(int san_max)
 {
-    if(dp_index < san_max)
+   
+    // dp 뒷부분 더 계산해야함
+    for(int i = dp_index; i<san_max; i++)
     {
-        // dp 뒷부분 더 계산해야함
-        for(int i = dp_index; i<san_max; i++)
+        for(int j = 0; j<i; j++)
         {
-            for(int j = 0; j<i; j++)
+            if(sans[j] < sans[i])
             {
-                if(sans[j] < sans[i])
-                {
-                    dp[i] = (dp[i] < (dp[j] + 1000000)) ? dp[j] + 1000000 : dp[i];
-                }
-                
+                dp[i] = (dp[i] < (dp[j] + 1000000)) ? dp[j] + 1000000 : dp[i];
             }
+            
         }
     }
+    dp_index = san_max - 1;
+    
 }
 
 long long plays(int m_index){
@@ -64,6 +64,7 @@ int main() {
         }else if(ques == 300)
         {
             sans.pop_back();
+            dp[dp_index] = 0;
             dp_index--;
         }else if(ques == 400)
         {
