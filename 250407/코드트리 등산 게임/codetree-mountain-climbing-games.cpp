@@ -26,7 +26,7 @@ long long plays(vector<int> sans, int m_index) {
     for (int i = 0; i < sans.size(); i++)
     {
         //dp[i] = *max_element(segment_tree.begin(), segment_tree.begin() + sans[i]) + 1;
-        dp[i] = get_max(segment_tree, 0, sans[i] - 1);
+        dp[i] = get_max(segment_tree, 0, sans[i] - 1) + 1;
         segment_tree[sans[i]] = dp[i];
         //cout << "dp["<<i<<"] : "<<dp[i]<<endl;
     }
