@@ -17,7 +17,17 @@ int main() {
     for(int i = 0; i<k; i++)
     {
        
-
+       /*
+       cout << "i. : "<< i << endl;
+        for(int j = 0; j<r; j++)
+        {
+            for(int k = 0; k<c; k++)
+            {
+                cout << maps[j][k] <<" ";
+            }
+            cout << endl;
+        }
+        */
 
         int ci, d;
         cin >> ci >> d;
@@ -25,15 +35,15 @@ int main() {
 
         int x, y = ci;
 
-        // 골렘중간이 [-1][x] 로 오도록
+        // 골렘중간이 [-1][y] 로 오도록
         if(maps[0][y] == 0)
         {
 
-        }else if((y - 1) >= 0 && maps[0][y-1] == 0){
+        }else if((y - 2) >= 0 && maps[0][y-1] == 0){
             y--;
             d--;
             d = (d + 4) % 4;
-        }else if((y + 1) < c && maps[0][y+1] == 0)
+        }else if((y + 2) < c && maps[0][y+1] == 0)
         {
             y++;
             d++;
@@ -43,6 +53,7 @@ int main() {
             maps = vector<vector<int>>(r, vector<int>(c, 0));
             continue;
         }
+
 
         // 골렘 중간이 [0][x]
         if(maps[1][y] == 0 && y - 1 >= 0 && maps[0][y-1] == 0 && y + 1 < c && maps[0][y+1] == 0)
@@ -63,8 +74,10 @@ int main() {
             continue;
         }
 
+        
+
         // 골렘 중간이 [1][x]
-        if(maps[2][y] == 0 && y - 1 >= 0 && maps[1][y-1] == 0 && y + 1 < c && maps[1][y+1] == 0)
+        if(maps[2][y] == 0 && maps[1][y-1] == 0 && maps[1][y+1] == 0)
         {
             
         }else if(y - 2 >= 0 && maps[2][y-1] == 0 && maps[1][y-1] == 0 && maps[1][y-2] == 0 && maps[0][y-2] == 0){
@@ -86,7 +99,7 @@ int main() {
         x = 1;
 
         // 2. 최대한 남쪽으로 내려가기 (map 초기화 안됨)
-        while(x <= r)
+        while(x < r)
         {
             if(x + 2 >= r)
             {
@@ -137,6 +150,7 @@ int main() {
             maps[x+dx[j]][y+dy[j]] = colvalue;
         }
 
+        //cout << colvalue << endl;
         answer+=colvalue;
     }
 
