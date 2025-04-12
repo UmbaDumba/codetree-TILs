@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 int main() {
@@ -9,25 +10,19 @@ int main() {
     cin >> r >> c >> k;
 
     vector<vector<int>> maps(r, vector<int>(c, 0));
+    vector<vector<int>> exit(r, vector<int>(c, 0));
 
     vector<int> dx = {-1, 0, 1, 0};
     vector<int> dy = {0, 1, 0, -1};
 
 
-    for(int i = 0; i<k; i++)
+    for(int i = 1; i<=k; i++)
     {
        
-       /*
-       cout << "i. : "<< i << endl;
-        for(int j = 0; j<r; j++)
-        {
-            for(int k = 0; k<c; k++)
-            {
-                cout << maps[j][k] <<" ";
-            }
-            cout << endl;
-        }
-        */
+       
+       //cout << "i. : "<< i << endl;
+        
+        
 
         int ci, d;
         cin >> ci >> d;
@@ -51,12 +46,13 @@ int main() {
         }else{
             // map 초기화
             maps = vector<vector<int>>(r, vector<int>(c, 0));
+            exit = vector<vector<int>>(r, vector<int>(c, 0));
             continue;
         }
 
 
         // 골렘 중간이 [0][x]
-        if(maps[1][y] == 0 && y - 1 >= 0 && maps[0][y-1] == 0 && y + 1 < c && maps[0][y+1] == 0)
+        if(maps[1][y] == 0 && maps[0][y-1] == 0 && maps[0][y+1] == 0)
         {
             
         }else if(y - 2 >= 0 && maps[1][y-1] == 0 && maps[0][y-1] == 0 && maps[0][y-2] == 0){
@@ -71,6 +67,7 @@ int main() {
         }else{
             // map 초기화
             maps = vector<vector<int>>(r, vector<int>(c, 0));
+            exit = vector<vector<int>>(r, vector<int>(c, 0));
             continue;
         }
 
@@ -92,6 +89,7 @@ int main() {
         }else{
             // map 초기화
             maps = vector<vector<int>>(r, vector<int>(c, 0));
+            exit = vector<vector<int>>(r, vector<int>(c, 0));
             continue;
         }
 
@@ -123,35 +121,61 @@ int main() {
             x++;
         }
 
+        maps[x][y] = i;
+        for(int j = 0; j<4; j++)
+        {
+            maps[x+dx[j]][y+dy[j]] = i;
+        }
+        exit[x + dx[d]][y + dy[d]] = 1;
+
+ 
+
         // 정령 이동
-
-        // 출구로 나가는경우
-        int outx = x + dx[d];
-        int outy = y + dy[d];
-        int outcolvalue = 0;
-        for(int j = 0; j<4; j++)
+        queue<vector<int>> que;
+        que.push({x, y});
+        vector<vector<int>> visited(r, vector<int>(c, 0));
+        int max_col = x;
+        while(!que.empty())
         {
-            int cx = outx + dx[j];
-            int cy = outy + dy[j];
-            if(cx < 0 || cx >= r || cy < 0 || cy >= c)
+            vector<int> jung = que.front();
+            que.pop();
+
+            for(int j = 0; j<4; j++)
             {
-                continue;
+                int nx = jung[0] + dx[j];
+                int ny = jung[1] + dy[j];
+                if(nx < 0 || ny < 0 || nx >= r || ny >= c)
+                {
+                    continue;
+                }
+
+                if(maps[nx][ny] != 0 && visited[nx][ny] == 0 && (maps[nx][ny] == maps[jung[0]][jung[1]] || exit[jung[0]][jung[1]] == 1))
+                {
+                
+                    visited[nx][ny] = 1;
+                    max_col = max(max_col, nx);
+                    que.push({nx, ny});
+                }
             }
-            outcolvalue = max(outcolvalue, maps[cx][cy]);
         }
-
-        // 지금위치에서 젤 아래로 간 경우와 비교
-        int colvalue = max(outcolvalue, x + 2);
-
-        // map에 저장
-        maps[x][y] = colvalue;
-        for(int j = 0; j<4; j++)
-        {
-            maps[x+dx[j]][y+dy[j]] = colvalue;
-        }
+        
+        
 
         //cout << colvalue << endl;
-        answer+=colvalue;
+
+        /*
+        for(int j = 0; j<r; j++)
+        {
+            for(int k = 0; k<c; k++)
+            {
+                cout << maps[j][k] <<" ";
+            }
+            cout << endl;
+        }
+        */
+        
+        //cout << (max_col+1) << endl;
+        answer+=(max_col+1);
     }
 
     
